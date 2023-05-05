@@ -12,8 +12,9 @@ declare(strict_types = 1);
  * with this source code in the file LICENSE.
  */
 
-namespace Cache\Adapter\Filesystem\Tests;
+namespace Cache\Adapter\Filesystem\Tests\Acceptance;
 
+use Cache\Adapter\Filesystem\Tests\Helper\CreatePoolTrait;
 use PHPUnit\Framework\TestCase;
 use Psr\Cache\InvalidArgumentException;
 

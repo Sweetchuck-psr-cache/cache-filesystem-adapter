@@ -12,11 +12,12 @@ declare(strict_types = 1);
  * with this source code in the file LICENSE.
  */
 
-namespace Cache\Adapter\Filesystem\Tests;
+namespace Cache\Adapter\Filesystem\Tests\Acceptance;
 
-use Cache\IntegrationTests\CachePoolTest;
+use Cache\Adapter\Filesystem\Tests\Helper\CreatePoolTrait;
+use Cache\IntegrationTests\SimpleCacheTest;
 
-class IntegrationPoolTest extends CachePoolTest
+class IntegrationSimpleCacheTest extends SimpleCacheTest
 {
     use CreatePoolTrait;
 

@@ -12,7 +12,7 @@ declare(strict_types = 1);
  * with this source code in the file LICENSE.
  */
 
-namespace Cache\Adapter\Filesystem\Tests;
+namespace Cache\Adapter\Filesystem\Tests\Helper;
 
 use Cache\Adapter\Filesystem\FilesystemCachePool;
 use League\Flysystem\Adapter\Local;
@@ -36,15 +36,22 @@ trait CreatePoolTrait
     protected function getFilesystem(): Filesystem
     {
         if ($this->filesystem === null) {
-            $this->filesystem = new Filesystem(new Local(__DIR__.'/../tmp/'.rand(1, 100000)));
+            $root = static::getSelfRoot();
+            $this->filesystem = new Filesystem(new Local("$root/tmp/".rand(1, 100000)));
         }
 
         return $this->filesystem;
     }
 
+    protected static function getSelfRoot(): string
+    {
+        return dirname(__DIR__, 3);
+    }
+
     public static function tearDownAfterClassFilesystem(): void
     {
+        $root = static::getSelfRoot();
         $fs = new \Symfony\Component\Filesystem\Filesystem();
-        $fs->remove(__DIR__ . '/../tmp/');
+        $fs->remove("$root/tmp/");
     }
 }

@@ -12,14 +12,23 @@ declare(strict_types = 1);
  * with this source code in the file LICENSE.
  */
 
-namespace Cache\Adapter\Filesystem\Tests;
+namespace Cache\Adapter\Filesystem\Tests\Acceptance;
 
-use Cache\IntegrationTests\TaggableCachePoolTest;
-use Symfony\Component\Filesystem\Filesystem;
+use Cache\Adapter\Filesystem\Tests\Helper\CreatePoolTrait;
+use Cache\IntegrationTests\CachePoolTest;
 
-class IntegrationTagTest extends TaggableCachePoolTest
+class IntegrationPoolTest extends CachePoolTest
 {
     use CreatePoolTrait;
+
+    /**
+     * {@inheritdoc}
+     *
+     * @phpstan-var array<string, string>
+     */
+    protected array $skippedTests = [
+        'testBasicUsageWithLongKey' => 'Long keys are not supported.',
+    ];
 
     /**
      * {@inheritdoc}
